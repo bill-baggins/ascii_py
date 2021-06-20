@@ -74,7 +74,7 @@ def main():
     valid_file_types = (".jpg", ".png", ".bmp")
     image_names = os.listdir(relative_path)
 
-    # Check for any invalid file types
+    # Check for any invalid file type
     for i, image in enumerate(image_names):
         if image[len(image) - 4:len(image)].lower() not in valid_file_types:
             print("WARNING: There are files in your directory that are not of the following types:"
