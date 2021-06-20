@@ -88,6 +88,9 @@ def main():
 
     get_user_input(image_width, ascii_string)
 
+    if "ascii_conversions" not in os.listdir():
+        os.mkdir("ascii_conversions")
+
     for image in image_names:
         temp_name = image.split(".")[0]
         with open(f"{os.path.join('ascii_conversions', f'{temp_name}_ascii.txt')}", "w+", encoding="utf-8") as f:
