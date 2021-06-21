@@ -1,4 +1,3 @@
-
 import PIL
 import os
 import sys
@@ -43,9 +42,28 @@ def ascii_matrix_of(image_name: str,
     im.close()
 
 
-def get_user_input(image_width: int, ascii_string: str) -> None:
+def main():
+    image_width = 0     # User-inputted value.
+    ascii_string = ""   # User-inputted value.
+
     min_size = 50
     max_size = 340
+
+    relative_path = "./images"
+    valid_file_types = (".jpg", ".png", ".bmp")
+    image_names = os.listdir(relative_path)
+
+    # Check for any invalid file type
+    for i, image in enumerate(image_names):
+        if image[len(image) - 4:len(image)].lower() not in valid_file_types:
+            print("WARNING: There are files in your directory that are not of the following types:"
+                  " .jpg, .png, .bmp, .gif.")
+            print("Please remove these files.")
+            input("Press the 'enter' key to exit...")
+            sys.exit()
+        print(f"Image {i}: {image}")
+
+    print("Image to ASCII: Convert images into ASCII characters!")
 
     while ascii_string == "" and image_width == 0:
         try:
@@ -64,29 +82,6 @@ def get_user_input(image_width: int, ascii_string: str) -> None:
             ascii_string = ASCII_NORMAL
         else:
             continue
-
-
-def main():
-    image_width = 0     # User-inputted value.
-    ascii_string = ""   # User-inputted value.
-
-    relative_path = "./images"
-    valid_file_types = (".jpg", ".png", ".bmp")
-    image_names = os.listdir(relative_path)
-
-    # Check for any invalid file type
-    for i, image in enumerate(image_names):
-        if image[len(image) - 4:len(image)].lower() not in valid_file_types:
-            print("WARNING: There are files in your directory that are not of the following types:"
-                  " .jpg, .png, .bmp, .gif.")
-            print("Please remove these files.")
-            input("Press the 'enter' key to exit...")
-            sys.exit()
-        print(f"Image {i}: {image}")
-
-    print("Image to ASCII: Convert images into ASCII characters!")
-
-    get_user_input(image_width, ascii_string)
 
     if "ascii_conversions" not in os.listdir():
         os.mkdir("ascii_conversions")
